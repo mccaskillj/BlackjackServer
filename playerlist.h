@@ -1,3 +1,12 @@
+/*-----------------------------------------------------------------------------
+* playerlist.h
+* Jordan McCaskill
+* CMPT 361
+* Assignment 2
+*
+* Structs and prototypes for playerlist.c
+-----------------------------------------------------------------------------*/
+
 #ifndef PLAYERLIST_H
 #define PLAYERIST_H
 
@@ -5,9 +14,8 @@
 
 #include "common.h" /*argdata struct*/
 
-
-struct playernode
-{
+/*struct for the nodes of the playerlist*/
+struct playernode {
 	struct playernode *next;
 	char *name;
 	uint32_t money;
@@ -18,19 +26,37 @@ struct playernode
 	socklen_t *server_addr_len;
 };
 
-struct playerhead
-{
+/*struct for the header of the player list*/
+struct playerhead {
 	int size;
 	struct playernode *first;
 	struct playernode *last;
 };
 
+/*-----------------------------------------------------------------
+* Function: playerinit
+* Purpose: Create the player list
+* Parameters: None
+* Return: pointer to the header of the list
+-----------------------------------------------------------------*/
 struct playerhead *playerinit();
-struct playernode *playerNodeCreate(char *name, uint32_t money);
-struct playernode *playerAppend(struct playerhead *list, char *name, uint32_t money);
-struct playernode * findPlayer(struct argdata *argdata, char *name);
-void playerNodeDestroy(struct playernode *node);
+
+/*-----------------------------------------------------------------
+* Function: findPlayer
+* Purpose: find the data associated to a player's name or create a
+*          new entry if the name does not exist
+* Parameters: argdata - the main game state struct
+*             name - character array for the name
+* Return: the pointer to the node associated with the name
+-----------------------------------------------------------------*/
+struct playernode *findPlayer(struct argdata *argdata, char *name);
+
+/*-----------------------------------------------------------------
+* Function: playerListDestroy
+* Purpose: destroy the player list
+* Parameters: list - the list to destroy
+* Return: None
+-----------------------------------------------------------------*/
 void playerListDestroy(struct playerhead *list);
 
-/*PLAYERLIST_H*/
-#endif
+#endif /*PLAYERLIST_H*/
