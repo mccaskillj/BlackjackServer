@@ -8,8 +8,8 @@ Protocol Description
 All multibyte integers are transmitted in network byte order, i.e., big endian.
 
 Connect Request (size 13B)
-1 B: Connect Request\n
-12 B: Username: if the username has fewer than 12 characters, it must be a NUL-terminated string 
+1 B: Connect Request
+12 B: Username: if the username has fewer than 12 characters, it must be a NUL-terminated string
 Response: State (below) OR Error
 the Username must appear at a seat
 if mid-round, player will not be a "Player to Respond" until the next round
