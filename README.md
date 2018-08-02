@@ -36,7 +36,7 @@ Note: State is sent out 3 times at the end of a round with the dealer’s cards;
 The assignment bytes: <- sick joke 
 
 Layout
-'''
+```
 0             1                          5           7            11
       | opcode | Response Args | Seq # | Min Bet |
     11                     12                    33 
@@ -55,7 +55,7 @@ P5  | Username | Bank |   Bet   | Cards |
 P6  | Username | Bank |   Bet   | Cards |
     279             291      295      299       320
 P7  | Username | Bank |   Bet   | Cards |
-'''
+```
 
 
 Bet (size same as State)
