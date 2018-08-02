@@ -8,13 +8,16 @@ Protocol Description
 All multibyte integers are transmitted in network byte order, i.e., big endian.
 
 Connect Request (size 13B)
+```
 1 B: Connect Request
 12 B: Username: if the username has fewer than 12 characters, it must be a NUL-terminated string
 Response: State (below) OR Error
 the Username must appear at a seat
 if mid-round, player will not be a "Player to Respond" until the next round
+```
 
 State (size 320B)
+```
 1 B: State Update (Opcode)
 4 B: Response Arguments (0 for “State”)
 2 B: Seq. # (+1 as the game progresses)
@@ -32,6 +35,7 @@ If player’s Bet field is empty → Bet
 Otherwise → Stand or Hit
 Other Players: None
 Note: State is sent out 3 times at the end of a round with the dealer’s cards; 1 second separates messages
+```
 
 The assignment bytes: <- sick joke 
 
@@ -59,38 +63,47 @@ P7  | Username | Bank |   Bet   | Cards |
 
 
 Bet (size same as State)
+```
 1 B: Bet (Opcode)
 4 B: Response Arguments (amount of bet)
 2 B: Seq. # + 1
 All other fields are a copy of the last received “State” above
 Server Response:
 None
+```
 
 Stand (size same as State)
+```
 1 B: Stand (Opcode)
 4 B: Response Arguments (0 for “Stand”)
 2 B: Seq. # + 1
 All other fields are a copy of the last received “State” above
 Server Response:
 None
+```
 
 Hit (size same as State)
+```
 1 B: Hit (Opcode)
 4 B: Response Arguments (0 for “Hit”)
 2 B: Seq. # + 1
 All other fields are a copy of the last received “State” above
 Server Response:
 None
+```
 
 Quit (size same as State)
+```
 1 B: Quit (Opcode) // free seat in state
 4 B: Response Arguments (0000)
 2 B: Seq. # + 1
 All other fields are a copy of the last received “State” above
 Server Response:
 None 
+```
 
 Error (size 142B)
+```
 1 B: Error (Opcode)
 1 B: Error Code:
 General error (0)
@@ -100,8 +113,10 @@ Name already taken/active (3)
 Invalid name (4)
 Timeout error (5)
 140 B: Description (NUL-terminated human readable ASCII string; optional)
+```
 
 Message (size 165B)
+```
 1 B: Message (Opcode)
 4 B: Client seq num
 4 B: Server seq num (order in which the message goes into the list)
@@ -109,16 +124,20 @@ Message (size 165B)
 Populated by the server on broadcast
 12 B: Player
 144 B: message (must be null terminated) (143 chars)
+```
 
 Message ack (size 5B)
+```
 1 B: ACK (Opcode) 
 4 B: Server seq num
+```
     
 The messages are acked only when received by the server, the client retries until they receive their message back.
 
 Sequence numbers are unsigned 4 byte in messages and acks, everywhere else they are 2 bytes.
 
 Opcodes
+```
 Status update (0)
 Connect request (1)
 Bet (2)
@@ -128,6 +147,7 @@ Quit (5)
 Error (6)
 Message (7)
 Ack (8)
+```
 
 Every packet is a fixed sized (even packets including variable length strings, anything after the nul terminator is zeroed out)
 
