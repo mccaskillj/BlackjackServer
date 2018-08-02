@@ -37,23 +37,23 @@ The assignment bytes: <- sick joke
 
 Layout
 ```
-0             1                          5           7            11
-      | opcode | Response Args | Seq # | Min Bet |
-    11                     12                    33 
-      | Active Player | Dealer Cards |
-     33               45       49         53        74
+    0        1               5       7         11
+    | opcode | Response Args | Seq # | Min Bet |
+    11              12             33 
+    | Active Player | Dealer Cards |
+     33        45     49        53      74
 P1  | Username | Bank |   Bet   | Cards |
-     74               86       90         94        115
+     74        86     90        94      115
 P2  | Username | Bank |   Bet   | Cards |
-    115              127     131      135       156
+    115        127    131       135     156
 P3  | Username | Bank |   Bet   | Cards |
-    156             168      172      176       197
+    156        168    172       176     197
 P4  | Username | Bank |   Bet   | Cards |
-    197             209     213       217       238
+    197        209    213       217     238
 P5  | Username | Bank |   Bet   | Cards |
-    238             250      254      258       279
+    238        250    254       258     279
 P6  | Username | Bank |   Bet   | Cards |
-    279             291      295      299       320
+    279        291    295       299     320
 P7  | Username | Bank |   Bet   | Cards |
 ```
 
